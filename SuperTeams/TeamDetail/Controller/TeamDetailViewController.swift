@@ -26,23 +26,14 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTeam))
-                
-        for i in 0...2 {
-            
-            //let heroe = Heroe(context: "12")
-            
-            //let heroe = Heroe(name: "Keka\(i)", info: "Bla bla \(i)")
-            //heroes.append(heroe)
-        }
-        
-
         
         
         teamLabel = UILabel()
         teamLabel.text = "Team name"
+        teamLabel.textColor = UIColor.label
         view.addSubview(teamLabel)
         teamLabel.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(60)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.equalTo(view).offset(20)
         }
         
@@ -97,10 +88,10 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         var content = cell.defaultContentConfiguration()
         if indexPath.row < heroes.count {
             content.text = heroes[indexPath.row].name
-            content.textProperties.color = UIColor.black
+            content.textProperties.color = UIColor.label
         } else {
             content.text = "+ add new hero"
-            content.textProperties.color = UIColor.black.withAlphaComponent(0.5)
+            content.textProperties.color = UIColor.label.withAlphaComponent(0.5)
         }
         
         cell.contentConfiguration = content
@@ -115,8 +106,11 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if indexPath.row < heroes.count {
             //open heroe details
+            vc.isEdit = false
+            vc.currentHeroe = heroes[indexPath.row]
         } else {
             //find a hero
+            vc.isEdit = true
         }
         
         navigationController?.pushViewController(vc, animated: true)
@@ -147,8 +141,13 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @objc func saveTeam() {
         guard let teamName = teamNameTextField.text else { return }
-        
-        //let newTeam = Team(context: context)
+        if teamName.count == 0 {
+            showError(err: TeamError.emptyName)
+            return
+        } else if heroes.count < 3 {
+            showError(err: TeamError.tooSmall)
+            return
+        }
         
         team?.name = teamName
         
@@ -168,23 +167,45 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func loadTeam() {
         guard let objectId = team?.objectID else { print("return"); return }
         do {
-          team = try context.existingObject(with: objectId) as! Team
+            team = try context.existingObject(with: objectId) as? Team
             heroes = team?.heroes?.allObjects as! [Heroe]
-            print(team?.heroes)
         } catch {
             print("Error loading team: \(error)")
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showError(err: TeamError) {
+        var title = ""
+        var message = ""
+        
+        switch err {
+        case .tooSmall:
+            title = "Small team"
+            message = "Your team is too small, your team must have at least 3 members"
+        case .emptyName:
+            title = "Empty team name"
+            message = "In order for the team to be created, you need to give it a name"
+        }
+        
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(ac, animated: true, completion: nil)
     }
-    */
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
+}
 
+enum TeamError {
+    case tooSmall
+    case emptyName
 }
