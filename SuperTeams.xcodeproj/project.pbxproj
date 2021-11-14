@@ -7,25 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		123332752740365A00318121 /* HeroeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123332742740365A00318121 /* HeroeViewController.swift */; };
 		12604E61273D83C000AB05F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E60273D83C000AB05F5 /* AppDelegate.swift */; };
 		12604E63273D83C000AB05F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E62273D83C000AB05F5 /* SceneDelegate.swift */; };
-		12604E65273D83C000AB05F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E64273D83C000AB05F5 /* ViewController.swift */; };
+		12604E65273D83C000AB05F5 /* TeamsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E64273D83C000AB05F5 /* TeamsTableViewController.swift */; };
 		12604E68273D83C000AB05F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12604E66273D83C000AB05F5 /* Main.storyboard */; };
 		12604E6B273D83C000AB05F5 /* SuperTeams.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12604E69273D83C000AB05F5 /* SuperTeams.xcdatamodeld */; };
 		12604E6D273D83C100AB05F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12604E6C273D83C100AB05F5 /* Assets.xcassets */; };
 		12604E70273D83C100AB05F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12604E6E273D83C100AB05F5 /* LaunchScreen.storyboard */; };
+		12604E7C273F910500AB05F5 /* TeamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E7B273F910500AB05F5 /* TeamDetailViewController.swift */; };
+		F1B45B789A03A64F6730C631 /* Pods_SuperTeams.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB6ACDA0BA9D35B9F88D6F8 /* Pods_SuperTeams.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		045F1B792BB660160FB1B24A /* Pods-SuperTeams.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperTeams.release.xcconfig"; path = "Target Support Files/Pods-SuperTeams/Pods-SuperTeams.release.xcconfig"; sourceTree = "<group>"; };
+		123332742740365A00318121 /* HeroeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroeViewController.swift; sourceTree = "<group>"; };
 		12604E5D273D83C000AB05F5 /* SuperTeams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperTeams.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12604E60273D83C000AB05F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12604E62273D83C000AB05F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		12604E64273D83C000AB05F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		12604E64273D83C000AB05F5 /* TeamsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsTableViewController.swift; sourceTree = "<group>"; };
 		12604E67273D83C000AB05F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12604E6A273D83C000AB05F5 /* SuperTeams.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SuperTeams.xcdatamodel; sourceTree = "<group>"; };
 		12604E6C273D83C100AB05F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12604E6F273D83C100AB05F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12604E71273D83C100AB05F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12604E7B273F910500AB05F5 /* TeamDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailViewController.swift; sourceTree = "<group>"; };
+		174DF56D1D129EB6934D9978 /* Pods-SuperTeams.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperTeams.debug.xcconfig"; path = "Target Support Files/Pods-SuperTeams/Pods-SuperTeams.debug.xcconfig"; sourceTree = "<group>"; };
+		4BB6ACDA0BA9D35B9F88D6F8 /* Pods_SuperTeams.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperTeams.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +41,116 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1B45B789A03A64F6730C631 /* Pods_SuperTeams.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1233326C2740358F00318121 /* Teams */ = {
+			isa = PBXGroup;
+			children = (
+				1233326F274035AD00318121 /* Model */,
+				1233326E274035A400318121 /* View */,
+				1233326D2740359900318121 /* Controller */,
+			);
+			path = Teams;
+			sourceTree = "<group>";
+		};
+		1233326D2740359900318121 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				12604E64273D83C000AB05F5 /* TeamsTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1233326E274035A400318121 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1233326F274035AD00318121 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		12333270274035BD00318121 /* TeamDetail */ = {
+			isa = PBXGroup;
+			children = (
+				12333273274035DA00318121 /* Model */,
+				12333272274035D300318121 /* View */,
+				12333271274035CA00318121 /* Controller */,
+			);
+			path = TeamDetail;
+			sourceTree = "<group>";
+		};
+		12333271274035CA00318121 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				12604E7B273F910500AB05F5 /* TeamDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		12333272274035D300318121 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		12333273274035DA00318121 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		123332762740366B00318121 /* Heroe */ = {
+			isa = PBXGroup;
+			children = (
+				123332792740369900318121 /* Model */,
+				123332782740369300318121 /* View */,
+				123332772740368800318121 /* Controller */,
+			);
+			path = Heroe;
+			sourceTree = "<group>";
+		};
+		123332772740368800318121 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				123332742740365A00318121 /* HeroeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		123332782740369300318121 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		123332792740369900318121 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		12604E54273D83BF00AB05F5 = {
 			isa = PBXGroup;
 			children = (
 				12604E5F273D83C000AB05F5 /* SuperTeams */,
 				12604E5E273D83C000AB05F5 /* Products */,
+				77244E0984F58E770C2014AC /* Pods */,
+				8F72019F05D004328D853BF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,14 +167,33 @@
 			children = (
 				12604E60273D83C000AB05F5 /* AppDelegate.swift */,
 				12604E62273D83C000AB05F5 /* SceneDelegate.swift */,
-				12604E64273D83C000AB05F5 /* ViewController.swift */,
 				12604E66273D83C000AB05F5 /* Main.storyboard */,
+				1233326C2740358F00318121 /* Teams */,
+				12333270274035BD00318121 /* TeamDetail */,
+				123332762740366B00318121 /* Heroe */,
 				12604E6C273D83C100AB05F5 /* Assets.xcassets */,
 				12604E6E273D83C100AB05F5 /* LaunchScreen.storyboard */,
 				12604E71273D83C100AB05F5 /* Info.plist */,
 				12604E69273D83C000AB05F5 /* SuperTeams.xcdatamodeld */,
 			);
 			path = SuperTeams;
+			sourceTree = "<group>";
+		};
+		77244E0984F58E770C2014AC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				174DF56D1D129EB6934D9978 /* Pods-SuperTeams.debug.xcconfig */,
+				045F1B792BB660160FB1B24A /* Pods-SuperTeams.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		8F72019F05D004328D853BF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4BB6ACDA0BA9D35B9F88D6F8 /* Pods_SuperTeams.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +203,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12604E74273D83C100AB05F5 /* Build configuration list for PBXNativeTarget "SuperTeams" */;
 			buildPhases = (
+				9DBD9219C4FA635CA5FBA42E /* [CP] Check Pods Manifest.lock */,
 				12604E59273D83C000AB05F5 /* Sources */,
 				12604E5A273D83C000AB05F5 /* Frameworks */,
 				12604E5B273D83C000AB05F5 /* Resources */,
+				FF5654AB779E0D4F6C26FA7C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -136,13 +264,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9DBD9219C4FA635CA5FBA42E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SuperTeams-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF5654AB779E0D4F6C26FA7C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuperTeams/Pods-SuperTeams-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SuperTeams/Pods-SuperTeams-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SuperTeams/Pods-SuperTeams-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		12604E59273D83C000AB05F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				123332752740365A00318121 /* HeroeViewController.swift in Sources */,
 				12604E6B273D83C000AB05F5 /* SuperTeams.xcdatamodeld in Sources */,
-				12604E65273D83C000AB05F5 /* ViewController.swift in Sources */,
+				12604E65273D83C000AB05F5 /* TeamsTableViewController.swift in Sources */,
+				12604E7C273F910500AB05F5 /* TeamDetailViewController.swift in Sources */,
 				12604E61273D83C000AB05F5 /* AppDelegate.swift in Sources */,
 				12604E63273D83C000AB05F5 /* SceneDelegate.swift in Sources */,
 			);
@@ -288,6 +460,7 @@
 		};
 		12604E75273D83C100AB05F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 174DF56D1D129EB6934D9978 /* Pods-SuperTeams.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,12 +483,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		12604E76273D83C100AB05F5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 045F1B792BB660160FB1B24A /* Pods-SuperTeams.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -338,7 +512,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
