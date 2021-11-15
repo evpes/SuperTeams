@@ -8,19 +8,56 @@
 import UIKit
 import CoreData
 
-class TeamsTableViewController: UITableViewController {
+class TeamsTableViewController: UITableViewController  {
     
     var teams: [Team] = []
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadTeams()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTeam))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteAllTeams))
+        let addNewTeamBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTeam))
+        let deleteAllBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteAllTeams))
+        navigationItem.rightBarButtonItems = [deleteAllBarButtonItem, addNewTeamBarButtonItem]
+                
         navigationItem.title = "SuperTeams"
+                
+        let handler: (_ action: UIAction) -> () = { action in
+          print(action.identifier)
+          switch action.identifier.rawValue {
+          case "a...z":
+              self.teams = self.teams.sorted() { $1.name! > $0.name! }
+          case "z...a":
+              self.teams = self.teams.sorted() { $0.name! > $1.name! }
+          default:
+            break
+          }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
+        let actions = [
+             UIAction(title: "a...z", identifier: UIAction.Identifier("a...z"), handler: handler),
+             UIAction(title: "z...a", identifier: UIAction.Identifier("z...a"), handler: handler)
+         ]
+        
+        let menu = UIMenu(title: "", options: .singleSelection, children: actions)
+        
+        searchBar = UISearchBar()
+        searchBar.searchBarStyle = .minimal
+        searchBar.isTranslucent = false
+        searchBar.delegate = self
+        searchBar.sizeToFit()
+        tableView.tableHeaderView = searchBar
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "sort", menu: menu)
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,5 +146,30 @@ class TeamsTableViewController: UITableViewController {
     }
     
     
+}
+
+extension TeamsTableViewController: UISearchBarDelegate {
+
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let searchText = searchBar.text else { return }
+        if searchText.isEmpty {
+            loadTeams()
+            tableView.reloadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        } else {
+            let request : NSFetchRequest<Team> = Team.fetchRequest()
+            request.predicate = NSPredicate(format: "name CONTAINS [cd] %@", argumentArray: [searchText])
+            request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+            do {
+                teams = try context.fetch(request)
+            } catch {
+                print("Error fetching request: \(error)")
+            }
+            tableView.reloadData()
+        }
+    }
 }
 

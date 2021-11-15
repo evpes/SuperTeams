@@ -131,6 +131,7 @@
 		123332772740368800318121 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1233327C2741970500318121 /* HeroeManager.swift */,
 				123332742740365A00318121 /* HeroeViewController.swift */,
 			);
 			path = Controller;
@@ -146,7 +147,6 @@
 		123332792740369900318121 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1233327C2741970500318121 /* HeroeManager.swift */,
 				12333280274198B400318121 /* HeroeData.swift */,
 			);
 			path = Model;

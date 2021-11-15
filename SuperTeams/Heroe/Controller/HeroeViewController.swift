@@ -25,12 +25,14 @@ class HeroeViewController: UIViewController {
     var equipLabel: UILabel!
     var heroEquipLabel: UILabel!
     var randomGenerateButton: UIButton!
+    
+    var equipButtons: [UIButton] = []
+    
     var team: Team!
     var isEdit: Bool = true
     var currentHeroe: Heroe?
     var heroeImagePath: String?
     var heroeEquip: String?
-    var equipButtons: [UIButton] = []
     
     let availableEquip = ["🔫","🪃","🥋","🗡","📙","💊","🔨","🔦"]
     
@@ -42,8 +44,6 @@ class HeroeViewController: UIViewController {
         
         heroeManager.delegate = self
         
-        
-        // Do any additional setup after loading the view.
         avatar = UIImageView()
         avatar.layer.cornerRadius = 50
         avatar.layer.borderWidth = 3
@@ -154,7 +154,6 @@ class HeroeViewController: UIViewController {
             }
         }
         
-        
         randomGenerateButton = UIButton()
         randomGenerateButton.addTarget(self, action: #selector(randomButtonPressed), for: .touchUpInside)
         randomGenerateButton.layer.cornerRadius = 10
@@ -208,7 +207,7 @@ class HeroeViewController: UIViewController {
     @objc func saveHeroe() {
         
         guard let heroeName = nameTextField.text else { return }
-                
+        
         if heroeName.count == 0 {
             showError(err: HeroeError.emptyName)
             return
@@ -241,7 +240,7 @@ class HeroeViewController: UIViewController {
             newHeroe.isLeader = leaderSegmentedControl.selectedSegmentIndex == 0 ? false : true
             newHeroe.equip = heroeEquip
         }
-                        
+        
         do {
             try context.save()
         } catch {
@@ -289,26 +288,23 @@ class HeroeViewController: UIViewController {
             sender.layer.borderColor = UIColor.clear.cgColor
             
             var equipArr = heroeEquip?.components(separatedBy: ",") ?? []
-            
             equipArr.remove(at: equipArr.firstIndex(of: sender.titleLabel!.text!)!)
             
             if equipArr.count > 0 {
-            heroeEquip = equipArr.joined(separator: ",")
+                heroeEquip = equipArr.joined(separator: ",")
             } else {
                 heroeEquip = nil
             }
             heroEquipLabel.text = heroeEquip
+            
         case false:
             sender.isSelected = true
             sender.layer.borderColor = UIColor.green.cgColor
             
-            
             var equipArr = heroeEquip?.components(separatedBy: ",") ?? []
-            
             equipArr.append(sender.titleLabel!.text!)
             
             heroeEquip = equipArr.joined(separator: ",")
-            
             heroEquipLabel.text = heroeEquip
             
         }
@@ -375,7 +371,9 @@ extension HeroeViewController: HeroeManagerDelegate {
     }
     
     func failWithError(error: Error) {
-        print(error)
+        DispatchQueue.main.async {
+            self.showError(err: HeroeError.networkError)
+        }
     }
     
     func updateHeroeImage(imageData: Data) {
