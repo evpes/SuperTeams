@@ -25,6 +25,7 @@ class HeroeViewController: UIViewController {
     var equipLabel: UILabel!
     var heroEquipLabel: UILabel!
     var randomGenerateButton: UIButton!
+    var activityController: UIActivityIndicatorView!
     
     var equipButtons: [UIButton] = []
     
@@ -133,6 +134,14 @@ class HeroeViewController: UIViewController {
             make.left.equalTo(view).offset(20)
         }
         
+        activityController = UIActivityIndicatorView()
+        activityController.color = UIColor.label
+        view.addSubview(activityController)
+        activityController.snp.makeConstraints { make in
+            make.center.equalTo(avatar)
+        }
+        
+        
         for (index,item) in availableEquip.enumerated() {
             let equipButton = UIButton()
             equipButton.titleLabel?.font = UIFont.systemFont(ofSize: 25)
@@ -161,7 +170,7 @@ class HeroeViewController: UIViewController {
         randomGenerateButton.layer.cornerRadius = 10
         randomGenerateButton.titleLabel?.textColor = .black
         randomGenerateButton.setTitle("Random generate heroe", for: .normal)
-        randomGenerateButton.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
+        randomGenerateButton.backgroundColor = UIColor.label
         view.addSubview(randomGenerateButton)
         randomGenerateButton.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
@@ -276,6 +285,7 @@ class HeroeViewController: UIViewController {
     
     @objc func randomButtonPressed() {
         catchPhraseTextField.text = catchPhrases[Int.random(in: 0..<catchPhrases.count)]
+        activityController.startAnimating()
         heroeManager.performRequest()
     }
     
@@ -375,6 +385,7 @@ extension HeroeViewController: HeroeManagerDelegate {
     func failWithError(error: Error) {
         DispatchQueue.main.async {
             self.showError(err: HeroeError.networkError)
+            self.activityController.stopAnimating()
         }
     }
     
@@ -382,6 +393,7 @@ extension HeroeViewController: HeroeManagerDelegate {
         DispatchQueue.main.async {
             self.avatar.image = UIImage(data: imageData)
             self.saveImage()
+            self.activityController.stopAnimating()
         }
         
     }
