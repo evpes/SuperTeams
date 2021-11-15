@@ -89,6 +89,10 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         if indexPath.row < heroes.count {
             content.text = heroes[indexPath.row].name
             content.textProperties.color = UIColor.label
+            if heroes[indexPath.row].isLeader {
+                content.secondaryText = "Leader"
+            }
+            
         } else {
             content.text = "+ add new hero"
             content.textProperties.color = UIColor.label.withAlphaComponent(0.5)
@@ -118,14 +122,14 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive, title: "") { action, view, handler in
-            guard let team = self.team else { return }
+            
             self.context.delete(self.heroes[indexPath.row])
             self.heroes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             self.saveData()
         }
         action.image = UIImage(systemName: "trash.circle")
-        //action.backgroundColor = UIColor.init(red: 0/255.0, green: 0/255.0, blue: 0/255.0, alpha: 0.0)
+        
         let configuration = UISwipeActionsConfiguration(actions: [action])
         
         return configuration

@@ -4,8 +4,8 @@
         <attribute name="catchPhrase" optional="YES" attributeType="String"/>
         <attribute name="equip" optional="YES" attributeType="String"/>
         <attribute name="imagePath" optional="YES" attributeType="String"/>
+        <attribute name="isLeader" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="uuid" optional="YES" attributeType="String"/>
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="heroes" inverseEntity="Team"/>
     </entity>
     <entity name="Team" representedClassName="Team" syncable="YES" codeGenerationType="class">
