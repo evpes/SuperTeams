@@ -37,6 +37,7 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         teamNameTextField = UITextField()
+        teamNameTextField.delegate = self
         view.addSubview(teamNameTextField)
         teamNameTextField.placeholder = "Enter name of your team"
         teamNameTextField.snp.makeConstraints { make in
@@ -195,6 +196,13 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         present(ac, animated: true, completion: nil)
     }
     
+}
+
+extension TeamDetailViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
+    }
 }
 
 enum TeamError {

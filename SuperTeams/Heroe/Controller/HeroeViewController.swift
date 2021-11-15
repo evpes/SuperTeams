@@ -78,6 +78,7 @@ class HeroeViewController: UIViewController {
         }
         
         nameTextField = UITextField()
+        nameTextField.delegate = self
         nameTextField.placeholder = "Heroe name"
         view.addSubview(nameTextField)
         nameTextField.snp.makeConstraints { make in
@@ -94,6 +95,7 @@ class HeroeViewController: UIViewController {
         }
         
         catchPhraseTextField = UITextField()
+        catchPhraseTextField.delegate = self
         catchPhraseTextField.placeholder = "Enter catch phrase for this heroe"
         view.addSubview(catchPhraseTextField)
         catchPhraseTextField.snp.makeConstraints { make in
@@ -396,6 +398,13 @@ extension HeroeViewController: HeroeManagerDelegate {
     }
     
     
+}
+
+extension HeroeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
+    }
 }
 
 enum HeroeError {
