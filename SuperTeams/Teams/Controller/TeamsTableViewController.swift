@@ -19,6 +19,7 @@ class TeamsTableViewController: UITableViewController {
         loadTeams()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTeam))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteAllTeams))
         navigationItem.title = "SuperTeams"
     }
     
@@ -70,6 +71,23 @@ class TeamsTableViewController: UITableViewController {
             vc.teamsVCDelagate = self
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @objc func deleteAllTeams() {
+        let ac = UIAlertController(title: "Delete all teams", message: "Are you sure you want to delete all teams ", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Yes, delete all teams", style: .default, handler: { [unowned self] _ in
+            for team in self.teams {
+                self.context.delete(team)
+            }
+            self.teams.removeAll()
+            self.saveData()
+            self.tableView.reloadData()
+        }))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        present(ac, animated: true, completion: nil)
+        
+        
+
     }
     
     func saveData() {

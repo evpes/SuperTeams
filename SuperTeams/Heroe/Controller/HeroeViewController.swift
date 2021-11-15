@@ -70,10 +70,10 @@ class HeroeViewController: UIViewController {
         }
         
         nameLabel = UILabel()
-        nameLabel.text = "Name"
+        nameLabel.text = "Name:"
         view.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(avatar).offset(120)
+            make.top.equalTo(avatar).offset(150)
             make.left.equalTo(view).offset(20)
         }
         
@@ -86,7 +86,7 @@ class HeroeViewController: UIViewController {
         }
         
         catchPhraseLabel = UILabel()
-        catchPhraseLabel.text = "Catch phrase"
+        catchPhraseLabel.text = "Catch phrase:"
         view.addSubview(catchPhraseLabel)
         catchPhraseLabel.snp.makeConstraints { make in
             make.top.equalTo(nameTextField).offset(30)
@@ -117,7 +117,7 @@ class HeroeViewController: UIViewController {
         }
         
         equipLabel = UILabel()
-        equipLabel.text = "Heroe equip"
+        equipLabel.text = "Heroe equip:"
         view.addSubview(equipLabel)
         equipLabel.snp.makeConstraints { make in
             make.top.equalTo(leaderSegmentedControl).offset(40)

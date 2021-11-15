@@ -29,7 +29,7 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         
         teamLabel = UILabel()
-        teamLabel.text = "Team name"
+        teamLabel.text = "Team name:"
         teamLabel.textColor = UIColor.label
         view.addSubview(teamLabel)
         teamLabel.snp.makeConstraints { make in
