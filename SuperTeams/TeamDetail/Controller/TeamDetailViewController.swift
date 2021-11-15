@@ -145,13 +145,20 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @objc func saveTeam() {
         guard let teamName = teamNameTextField.text else { return }
+        let leader = heroes.filter { heroe in
+            heroe.isLeader
+        }
         if teamName.count == 0 {
             showError(err: TeamError.emptyName)
             return
         } else if heroes.count < 3 {
             showError(err: TeamError.tooSmall)
             return
+        } else if leader.isEmpty {
+            showError(err: TeamError.noLeader)
+            return
         }
+        print("leader = \(leader)")
         
         team?.name = teamName
         
@@ -189,6 +196,9 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case .emptyName:
             title = "Empty team name"
             message = "In order for the team to be created, you need to give it a name"
+        case .noLeader:
+            title = "No leader"
+            message = "Your team needs a leader, you need to put the leader attribute on the hero page"
         }
         
         let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -208,4 +218,5 @@ extension TeamDetailViewController: UITextFieldDelegate {
 enum TeamError {
     case tooSmall
     case emptyName
+    case noLeader
 }
