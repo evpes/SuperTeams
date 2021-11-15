@@ -90,7 +90,7 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             content.text = heroes[indexPath.row].name
             content.textProperties.color = UIColor.label
             if heroes[indexPath.row].isLeader {
-                content.secondaryText = "Leader"
+                content.secondaryText = "⭐️ Leader"
             }
             
         } else {
@@ -116,7 +116,7 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             //find a hero
             vc.isEdit = true
         }
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -158,7 +158,6 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             showError(err: TeamError.noLeader)
             return
         }
-        print("leader = \(leader)")
         
         team?.name = teamName
         
