@@ -11,67 +11,31 @@ import CoreData
 
 class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var detailView = TeamDetailView()
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var teamsVCDelagate: TeamsTableViewController?
     var team: Team?
     var heroes: [Heroe] = []
     
-    var tableView: UITableView!
-    var teamLabel: UILabel!
-    var teamNameTextField: UITextField!
-    var yourTeamLabel: UILabel!
+    override func loadView() {
+        view = detailView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveTeam))
                 
-        teamLabel = UILabel()
-        teamLabel.text = "Team name:"
-        teamLabel.textColor = UIColor.label
-        view.addSubview(teamLabel)
-        teamLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.left.equalTo(view).offset(20)
-        }
-        
-        teamNameTextField = UITextField()
-        teamNameTextField.delegate = self
-        view.addSubview(teamNameTextField)
-        teamNameTextField.placeholder = "Enter name of your team"
-        teamNameTextField.snp.makeConstraints { make in
-            make.top.equalTo(teamLabel).offset(30)
-            make.left.equalTo(view).offset(20)
-            make.right.equalTo(view).offset(20)
-        }
-        
-        yourTeamLabel = UILabel()
-        view.addSubview(yourTeamLabel)
-        yourTeamLabel.text = "Your team"
-        yourTeamLabel.textAlignment = .center
-        yourTeamLabel.snp.makeConstraints { make in
-            make.top.equalTo(teamNameTextField).offset(40)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
-        }
-        
-        tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Heroe")
-        tableView.dataSource = self
-        tableView.delegate = self
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.top.equalTo(yourTeamLabel).offset(30)
-            make.left.equalTo(view)
-            make.right.equalTo(view)
-            make.bottom.equalTo(view)
-        }
-        
+          detailView.teamNameTextField.delegate = self
+          detailView.tableView.dataSource = self
+          detailView.tableView.delegate = self
+
         if let team = team {
             print(team)
             print(team.name!)
-            teamNameTextField.text = team.name!
+            detailView.teamNameTextField.text = team.name!
             heroes = team.heroes?.allObjects as! [Heroe]
         } else {
             team = Team(context: context)
@@ -107,7 +71,6 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = HeroeViewController()
-        //let vc = storyboard?.instantiateViewController(withIdentifier: "Heroe") as! HeroeViewController
         vc.team = team
         vc.teamDetailVCDelagate = self
         
@@ -147,7 +110,7 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @objc func saveTeam() {
-        guard let teamName = teamNameTextField.text else { return }
+        guard let teamName = detailView.teamNameTextField.text else { return }
         let leader = heroes.filter { heroe in
             heroe.isLeader
         }

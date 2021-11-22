@@ -11,6 +11,8 @@
 		1233327D2741970500318121 /* HeroeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1233327C2741970500318121 /* HeroeManager.swift */; };
 		12333281274198B400318121 /* HeroeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12333280274198B400318121 /* HeroeData.swift */; };
 		1233328827425F9500318121 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1233328727425F9400318121 /* README.md */; };
+		123332E5274C129F00318121 /* TeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123332E4274C129F00318121 /* TeamDetailView.swift */; };
+		123332E8274C172300318121 /* HeroeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123332E7274C172300318121 /* HeroeView.swift */; };
 		12604E61273D83C000AB05F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E60273D83C000AB05F5 /* AppDelegate.swift */; };
 		12604E63273D83C000AB05F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E62273D83C000AB05F5 /* SceneDelegate.swift */; };
 		12604E65273D83C000AB05F5 /* TeamsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E64273D83C000AB05F5 /* TeamsTableViewController.swift */; };
@@ -27,6 +29,8 @@
 		1233327C2741970500318121 /* HeroeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroeManager.swift; sourceTree = "<group>"; };
 		12333280274198B400318121 /* HeroeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroeData.swift; sourceTree = "<group>"; };
 		1233328727425F9400318121 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		123332E4274C129F00318121 /* TeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailView.swift; sourceTree = "<group>"; };
+		123332E7274C172300318121 /* HeroeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroeView.swift; sourceTree = "<group>"; };
 		12604E5D273D83C000AB05F5 /* SuperTeams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuperTeams.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12604E60273D83C000AB05F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12604E62273D83C000AB05F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,7 @@
 		12333270274035BD00318121 /* TeamDetail */ = {
 			isa = PBXGroup;
 			children = (
+				123332E3274C126800318121 /* View */,
 				12333271274035CA00318121 /* Controller */,
 			);
 			path = TeamDetail;
@@ -87,6 +92,7 @@
 		123332762740366B00318121 /* Heroe */ = {
 			isa = PBXGroup;
 			children = (
+				123332E6274C171300318121 /* View */,
 				123332792740369900318121 /* Model */,
 				123332772740368800318121 /* Controller */,
 			);
@@ -118,6 +124,22 @@
 				12604E69273D83C000AB05F5 /* SuperTeams.xcdatamodeld */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		123332E3274C126800318121 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				123332E4274C129F00318121 /* TeamDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		123332E6274C171300318121 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				123332E7274C172300318121 /* HeroeView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		12604E54273D83BF00AB05F5 = {
@@ -287,7 +309,9 @@
 			files = (
 				123332752740365A00318121 /* HeroeViewController.swift in Sources */,
 				12604E6B273D83C000AB05F5 /* SuperTeams.xcdatamodeld in Sources */,
+				123332E8274C172300318121 /* HeroeView.swift in Sources */,
 				1233327D2741970500318121 /* HeroeManager.swift in Sources */,
+				123332E5274C129F00318121 /* TeamDetailView.swift in Sources */,
 				12604E65273D83C000AB05F5 /* TeamsTableViewController.swift in Sources */,
 				12604E7C273F910500AB05F5 /* TeamDetailViewController.swift in Sources */,
 				12604E61273D83C000AB05F5 /* AppDelegate.swift in Sources */,

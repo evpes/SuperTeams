@@ -9,25 +9,13 @@ import UIKit
 
 class HeroeViewController: UIViewController {
     
+    var heroeView = HeroeView()
+    
     var teamDetailVCDelagate: TeamDetailViewController?
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var heroeManager = HeroeManager()
-    
-    var avatar: UIImageView!
-    var nameLabel: UILabel!
-    var nameTextField: UITextField!
-    var catchPhraseLabel: UILabel!
-    var catchPhraseTextField: UITextField!
-    var avatarButton: UIButton!
-    var leaderSegmentedControl: UISegmentedControl!
-    var equipLabel: UILabel!
-    var heroEquipLabel: UILabel!
-    var randomGenerateButton: UIButton!
-    var activityController: UIActivityIndicatorView!
-    
-    var equipButtons: [UIButton] = []
     
     var team: Team!
     var isEdit: Bool = true
@@ -40,6 +28,10 @@ class HeroeViewController: UIViewController {
     let catchPhrases = ["I am your father","Hasta la vista, baby","I love the smell of napalm in the morning","Yippee ki yay, motherfucker","Release the Kraken!","I'll be back","THIS IS SPARTA!","Houston, we have a problem.",
                         "Suit up!","Oh my God, they killed Kenny","Bazinga!","I know kung fu.","You shall not pass!","How you doin?","A martini…shaken, not stirred.","To infinity…and beyond!","There can be only one."]
     
+    override func loadView() {
+        view = heroeView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,102 +39,16 @@ class HeroeViewController: UIViewController {
         
         heroeManager.delegate = self
         
-        avatar = UIImageView()
-        avatar.layer.cornerRadius = 50
-        avatar.layer.borderWidth = 3
-        avatar.layer.borderColor = UIColor.label.withAlphaComponent(0.5).cgColor
-        view.addSubview(avatar)
-        avatar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.width.lessThanOrEqualTo(120)
-            make.height.lessThanOrEqualTo(120)
-            make.centerX.equalTo(view)
-        }
-        avatar.contentMode = .scaleAspectFill
-        avatar.clipsToBounds = true
+        heroeView.avatarButton.addTarget(self, action: #selector(chooseImage), for: .touchUpInside)
         
-        avatarButton = UIButton()
-        avatarButton.addTarget(self, action: #selector(chooseImage), for: .touchUpInside)
-        avatarButton.layer.cornerRadius = 50
-        view.addSubview(avatarButton)
-        avatarButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.width.greaterThanOrEqualTo(100)
-            make.height.greaterThanOrEqualTo(100)
-            make.centerX.equalTo(view)
-        }
-        
-        nameLabel = UILabel()
-        nameLabel.text = "Name:"
-        view.addSubview(nameLabel)
-        nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(avatar).offset(150)
-            make.left.equalTo(view).offset(20)
-        }
-        
-        nameTextField = UITextField()
-        nameTextField.delegate = self
-        nameTextField.placeholder = "Heroe name"
-        view.addSubview(nameTextField)
-        nameTextField.snp.makeConstraints { make in
-            make.top.equalTo(nameLabel).offset(30)
-            make.left.equalTo(view).offset(20)
-        }
-        
-        catchPhraseLabel = UILabel()
-        catchPhraseLabel.text = "Catch phrase:"
-        view.addSubview(catchPhraseLabel)
-        catchPhraseLabel.snp.makeConstraints { make in
-            make.top.equalTo(nameTextField).offset(30)
-            make.left.equalTo(view).offset(20)
-        }
-        
-        catchPhraseTextField = UITextField()
-        catchPhraseTextField.delegate = self
-        catchPhraseTextField.placeholder = "Enter catch phrase for this heroe"
-        view.addSubview(catchPhraseTextField)
-        catchPhraseTextField.snp.makeConstraints { make in
-            make.top.equalTo(catchPhraseLabel).offset(30)
-            make.left.equalTo(view).offset(20)
-        }
-        
-        let items = ["Regular", "Leader"]
-        leaderSegmentedControl = UISegmentedControl(items: items)
-        leaderSegmentedControl.addTarget(self, action: #selector(changeLeader), for: .valueChanged)
+        heroeView.leaderSegmentedControl.addTarget(self, action: #selector(changeLeader), for: .valueChanged)
         if let heroe = currentHeroe {
             if heroe.isLeader {
-                leaderSegmentedControl.selectedSegmentIndex = 1
+                heroeView.leaderSegmentedControl.selectedSegmentIndex = 1
             }
         }
-        leaderSegmentedControl.selectedSegmentIndex = 0
-        view.addSubview(leaderSegmentedControl)
-        leaderSegmentedControl.snp.makeConstraints { make in
-            make.top.equalTo(catchPhraseTextField).offset(30)
-            make.left.equalTo(view).offset(20)
-        }
         
-        equipLabel = UILabel()
-        equipLabel.text = "Heroe equip:"
-        view.addSubview(equipLabel)
-        equipLabel.snp.makeConstraints { make in
-            make.top.equalTo(leaderSegmentedControl).offset(40)
-            make.left.equalTo(view).offset(20)
-        }
-        
-        heroEquipLabel = UILabel()
-        view.addSubview(heroEquipLabel)
-        heroEquipLabel.snp.makeConstraints { make in
-            make.top.equalTo(equipLabel).offset(30)
-            make.left.equalTo(view).offset(20)
-        }
-        
-        activityController = UIActivityIndicatorView()
-        activityController.color = UIColor.label
-        view.addSubview(activityController)
-        activityController.snp.makeConstraints { make in
-            make.center.equalTo(avatar)
-        }
-        
+        heroeView.randomGenerateButton.addTarget(self, action: #selector(randomButtonPressed), for: .touchUpInside)
         
         for (index,item) in availableEquip.enumerated() {
             let equipButton = UIButton()
@@ -153,54 +59,40 @@ class HeroeViewController: UIViewController {
             equipButton.layer.borderColor = UIColor.clear.cgColor
             equipButton.layer.cornerRadius = 5
             equipButton.layer.borderWidth = 2
-            view.addSubview(equipButton)
-            equipButtons.append(equipButton)
+            heroeView.addSubview(equipButton)
+            heroeView.equipButtons.append(equipButton)
             equipButton.snp.makeConstraints { make in
                 if index == 0 {
-                    make.left.equalTo(view).offset(30)
+                    make.left.equalTo(heroeView).offset(30)
                 } else {
-                    make.left.equalTo(equipButtons[index-1]).offset(40)
+                    make.left.equalTo(heroeView.equipButtons[index-1]).offset(40)
                 }
                 make.width.lessThanOrEqualTo(35)
                 make.height.lessThanOrEqualTo(35)
-                make.top.equalTo(heroEquipLabel).offset(30)
+                make.top.equalTo(heroeView.heroEquipLabel).offset(30)
             }
-        }
-        
-        randomGenerateButton = UIButton()
-        randomGenerateButton.addTarget(self, action: #selector(randomButtonPressed), for: .touchUpInside)
-        randomGenerateButton.layer.cornerRadius = 10
-        randomGenerateButton.titleLabel?.textColor = .black
-        randomGenerateButton.setTitle("Random generate heroe", for: .normal)
-        randomGenerateButton.backgroundColor = UIColor.label
-        view.addSubview(randomGenerateButton)
-        randomGenerateButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
-            make.width.greaterThanOrEqualTo(220)
-            make.height.greaterThanOrEqualTo(60)
-            make.centerX.equalTo(view)
         }
         
         if isEdit {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveHeroe))
         } else {
-            for button in equipButtons {
+            for button in heroeView.equipButtons {
                 button.isHidden = true
             }
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(switchToEditMode))
-            nameTextField.isUserInteractionEnabled = false
-            avatarButton.isUserInteractionEnabled = false
-            catchPhraseTextField.isUserInteractionEnabled = false
-            randomGenerateButton.isHidden = true
-            leaderSegmentedControl.isUserInteractionEnabled = false
+            heroeView.nameTextField.isUserInteractionEnabled = false
+            heroeView.avatarButton.isUserInteractionEnabled = false
+            heroeView.catchPhraseTextField.isUserInteractionEnabled = false
+            heroeView.randomGenerateButton.isHidden = true
+            heroeView.leaderSegmentedControl.isUserInteractionEnabled = false
         }
         
         if let heroe = currentHeroe {
             heroeEquip = heroe.equip
-            heroEquipLabel.text = heroeEquip
+            heroeView.heroEquipLabel.text = heroeEquip
             heroeImagePath = heroe.imagePath
             if let  heroeEquipArr = heroeEquip?.components(separatedBy: ",") {
-                for equipBtn in equipButtons {
+                for equipBtn in heroeView.equipButtons {
                     if heroeEquipArr.contains(equipBtn.titleLabel!.text!) {
                         equipBtn.isSelected = true
                         equipBtn.layer.borderColor = UIColor.green.cgColor
@@ -208,10 +100,10 @@ class HeroeViewController: UIViewController {
                 }
             }
             
-            nameTextField.text = heroe.name
-            catchPhraseTextField.text = heroe.catchPhrase
+            heroeView.nameTextField.text = heroe.name
+            heroeView.catchPhraseTextField.text = heroe.catchPhrase
             if let path = heroe.imagePath {
-                avatar.image = UIImage(contentsOfFile: path)
+                heroeView.avatar.image = UIImage(contentsOfFile: path)
             }
         }
         
@@ -219,7 +111,7 @@ class HeroeViewController: UIViewController {
     
     @objc func saveHeroe() {
         
-        guard let heroeName = nameTextField.text else { return }
+        guard let heroeName = heroeView.nameTextField.text else { return }
         
         if heroeName.count == 0 {
             showError(err: HeroeError.emptyName)
@@ -227,12 +119,12 @@ class HeroeViewController: UIViewController {
         } else if heroeImagePath == nil {
             showError(err: HeroeError.emptyAvatar)
             return
-        } else if catchPhraseTextField.text?.count == 0 {
+        } else if heroeView.catchPhraseTextField.text?.count == 0 {
             showError(err: HeroeError.emtyCatchPhrase)
             return
         }
         
-        if leaderSegmentedControl.selectedSegmentIndex == 1 {
+        if heroeView.leaderSegmentedControl.selectedSegmentIndex == 1 {
             for heroe in team.heroes?.allObjects as! [Heroe] {
                 heroe.isLeader = false
             }
@@ -241,16 +133,16 @@ class HeroeViewController: UIViewController {
         if let heroe = currentHeroe {
             heroe.name = heroeName
             heroe.imagePath = heroeImagePath
-            heroe.catchPhrase = catchPhraseTextField.text
-            heroe.isLeader = leaderSegmentedControl.selectedSegmentIndex == 0 ? false : true
+            heroe.catchPhrase = heroeView.catchPhraseTextField.text
+            heroe.isLeader = heroeView.leaderSegmentedControl.selectedSegmentIndex == 0 ? false : true
             heroe.equip = heroeEquip
         } else {
             let newHeroe = Heroe(context: context)
             newHeroe.name = heroeName
             newHeroe.parentCategory = team
             newHeroe.imagePath = heroeImagePath
-            newHeroe.catchPhrase = catchPhraseTextField.text
-            newHeroe.isLeader = leaderSegmentedControl.selectedSegmentIndex == 0 ? false : true
+            newHeroe.catchPhrase = heroeView.catchPhraseTextField.text
+            newHeroe.isLeader = heroeView.leaderSegmentedControl.selectedSegmentIndex == 0 ? false : true
             newHeroe.equip = heroeEquip
         }
         
@@ -261,21 +153,21 @@ class HeroeViewController: UIViewController {
         }
         
         teamDetailVCDelagate?.loadTeam()
-        teamDetailVCDelagate?.tableView.reloadData()
+        teamDetailVCDelagate?.detailView.tableView.reloadData()
         
         navigationController?.popViewController(animated: true)
     }
     
     @objc func switchToEditMode() {
-        for button in equipButtons {
+        for button in heroeView.equipButtons {
             button.isHidden = false
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveHeroe))
-        nameTextField.isUserInteractionEnabled = true
-        avatarButton.isUserInteractionEnabled = true
-        catchPhraseTextField.isUserInteractionEnabled = true
-        randomGenerateButton.isHidden = false
-        leaderSegmentedControl.isUserInteractionEnabled = true
+        heroeView.nameTextField.isUserInteractionEnabled = true
+        heroeView.avatarButton.isUserInteractionEnabled = true
+        heroeView.catchPhraseTextField.isUserInteractionEnabled = true
+        heroeView.randomGenerateButton.isHidden = false
+        heroeView.leaderSegmentedControl.isUserInteractionEnabled = true
     }
     
     @objc func chooseImage() {
@@ -286,8 +178,8 @@ class HeroeViewController: UIViewController {
     }
     
     @objc func randomButtonPressed() {
-        catchPhraseTextField.text = catchPhrases[Int.random(in: 0..<catchPhrases.count)]
-        activityController.startAnimating()
+        heroeView.catchPhraseTextField.text = catchPhrases[Int.random(in: 0..<catchPhrases.count)]
+        heroeView.activityController.startAnimating()
         heroeManager.performRequest()
     }
     
@@ -309,7 +201,7 @@ class HeroeViewController: UIViewController {
             } else {
                 heroeEquip = nil
             }
-            heroEquipLabel.text = heroeEquip
+            heroeView.heroEquipLabel.text = heroeEquip
             
         case false:
             sender.isSelected = true
@@ -319,7 +211,7 @@ class HeroeViewController: UIViewController {
             equipArr.append(sender.titleLabel!.text!)
             
             heroeEquip = equipArr.joined(separator: ",")
-            heroEquipLabel.text = heroeEquip
+            heroeView.heroEquipLabel.text = heroeEquip
             
         }
     }
@@ -364,7 +256,7 @@ extension HeroeViewController: UIImagePickerControllerDelegate,  UINavigationCon
         }
         
         heroeImagePath = imagePath.path
-        avatar.image = UIImage(contentsOfFile: imagePath.path)
+        heroeView.avatar.image = UIImage(contentsOfFile: imagePath.path)
         
         dismiss(animated: true, completion: nil)
         
@@ -380,31 +272,31 @@ extension HeroeViewController: UIImagePickerControllerDelegate,  UINavigationCon
 extension HeroeViewController: HeroeManagerDelegate {
     func updateHeroeName(heroe: HeroeData) {
         DispatchQueue.main.async {
-            self.nameTextField.text = heroe.name
+            self.heroeView.nameTextField.text = heroe.name
         }
     }
     
     func failWithError(error: Error) {
         DispatchQueue.main.async {
             self.showError(err: HeroeError.networkError)
-            self.activityController.stopAnimating()
+            self.heroeView.activityController.stopAnimating()
         }
     }
     
     func updateHeroeImage(imageData: Data) {
         DispatchQueue.main.async {
-            self.avatar.image = UIImage(data: imageData)
+            self.heroeView.avatar.image = UIImage(data: imageData)
             self.saveImage()
-            self.activityController.stopAnimating()
+            self.heroeView.activityController.stopAnimating()
         }
         
     }
     
     func saveImage() {
-        guard let imageName = nameTextField.text else { return }
+        guard let imageName = heroeView.nameTextField.text else { return }
         let imagePath = getDocumentDirectory().appendingPathComponent(imageName)
         
-        if let jpegData = avatar.image?.jpegData(compressionQuality: 1) {
+        if let jpegData = heroeView.avatar.image?.jpegData(compressionQuality: 1) {
             try? jpegData.write(to: imagePath)
         }
         
