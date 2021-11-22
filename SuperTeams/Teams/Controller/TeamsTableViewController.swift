@@ -20,22 +20,24 @@ class TeamsTableViewController: UITableViewController  {
         super.viewDidLoad()
         loadTeams()
         
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Team")
+        
         let addNewTeamBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewTeam))
         let deleteAllBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteAllTeams))
         navigationItem.rightBarButtonItems = [deleteAllBarButtonItem, addNewTeamBarButtonItem]
-                
+        
         navigationItem.title = "SuperTeams"
-                
+        
         let handler: (_ action: UIAction) -> () = { action in
-          print(action.identifier)
-          switch action.identifier.rawValue {
-          case "a...z":
-              self.teams = self.teams.sorted() { $1.name! > $0.name! }
-          case "z...a":
-              self.teams = self.teams.sorted() { $0.name! > $1.name! }
-          default:
-            break
-          }
+            print(action.identifier)
+            switch action.identifier.rawValue {
+            case "a...z":
+                self.teams = self.teams.sorted() { $1.name! > $0.name! }
+            case "z...a":
+                self.teams = self.teams.sorted() { $0.name! > $1.name! }
+            default:
+                break
+            }
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -43,9 +45,9 @@ class TeamsTableViewController: UITableViewController  {
         }
         
         let actions = [
-             UIAction(title: "a...z", identifier: UIAction.Identifier("a...z"), handler: handler),
-             UIAction(title: "z...a", identifier: UIAction.Identifier("z...a"), handler: handler)
-         ]
+            UIAction(title: "a...z", identifier: UIAction.Identifier("a...z"), handler: handler),
+            UIAction(title: "z...a", identifier: UIAction.Identifier("z...a"), handler: handler)
+        ]
         
         let menu = UIMenu(title: "", options: .singleSelection, children: actions)
         
@@ -65,13 +67,14 @@ class TeamsTableViewController: UITableViewController  {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                
+        let detailVC = TeamDetailViewController()
+        detailVC.teamsVCDelagate = self
         
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "TeamDetail") as? TeamDetailViewController {
-            vc.teamsVCDelagate = self
-            vc.team = teams[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
-        }
-        
+        detailVC.teamsVCDelagate = self
+        detailVC.team = teams[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
+                
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
@@ -105,10 +108,10 @@ class TeamsTableViewController: UITableViewController  {
     }
     
     @objc func addNewTeam() {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "TeamDetail") as? TeamDetailViewController {
-            vc.teamsVCDelagate = self
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        let detailVC = TeamDetailViewController()
+        detailVC.teamsVCDelagate = self
+        navigationController?.pushViewController(detailVC, animated: true)
+
     }
     
     @objc func deleteAllTeams() {
@@ -125,7 +128,7 @@ class TeamsTableViewController: UITableViewController  {
         present(ac, animated: true, completion: nil)
         
         
-
+        
     }
     
     func saveData() {
@@ -150,7 +153,7 @@ class TeamsTableViewController: UITableViewController  {
 }
 
 extension TeamsTableViewController: UISearchBarDelegate {
-
+    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let searchText = searchBar.text else { return }

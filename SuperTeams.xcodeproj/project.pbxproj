@@ -14,7 +14,6 @@
 		12604E61273D83C000AB05F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E60273D83C000AB05F5 /* AppDelegate.swift */; };
 		12604E63273D83C000AB05F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E62273D83C000AB05F5 /* SceneDelegate.swift */; };
 		12604E65273D83C000AB05F5 /* TeamsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12604E64273D83C000AB05F5 /* TeamsTableViewController.swift */; };
-		12604E68273D83C000AB05F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12604E66273D83C000AB05F5 /* Main.storyboard */; };
 		12604E6B273D83C000AB05F5 /* SuperTeams.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12604E69273D83C000AB05F5 /* SuperTeams.xcdatamodeld */; };
 		12604E6D273D83C100AB05F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12604E6C273D83C100AB05F5 /* Assets.xcassets */; };
 		12604E70273D83C100AB05F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12604E6E273D83C100AB05F5 /* LaunchScreen.storyboard */; };
@@ -32,7 +31,6 @@
 		12604E60273D83C000AB05F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12604E62273D83C000AB05F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		12604E64273D83C000AB05F5 /* TeamsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsTableViewController.swift; sourceTree = "<group>"; };
-		12604E67273D83C000AB05F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12604E6A273D83C000AB05F5 /* SuperTeams.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SuperTeams.xcdatamodel; sourceTree = "<group>"; };
 		12604E6C273D83C100AB05F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12604E6F273D83C100AB05F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,8 +55,6 @@
 		1233326C2740358F00318121 /* Teams */ = {
 			isa = PBXGroup;
 			children = (
-				1233326F274035AD00318121 /* Model */,
-				1233326E274035A400318121 /* View */,
 				1233326D2740359900318121 /* Controller */,
 			);
 			path = Teams;
@@ -72,25 +68,9 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		1233326E274035A400318121 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1233326F274035AD00318121 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		12333270274035BD00318121 /* TeamDetail */ = {
 			isa = PBXGroup;
 			children = (
-				12333273274035DA00318121 /* Model */,
-				12333272274035D300318121 /* View */,
 				12333271274035CA00318121 /* Controller */,
 			);
 			path = TeamDetail;
@@ -104,25 +84,10 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		12333272274035D300318121 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		12333273274035DA00318121 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		123332762740366B00318121 /* Heroe */ = {
 			isa = PBXGroup;
 			children = (
 				123332792740369900318121 /* Model */,
-				123332782740369300318121 /* View */,
 				123332772740368800318121 /* Controller */,
 			);
 			path = Heroe;
@@ -137,51 +102,10 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		123332782740369300318121 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		123332792740369900318121 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				12333280274198B400318121 /* HeroeData.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		12333282274257FF00318121 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				123332852742581400318121 /* Model */,
-				123332842742580E00318121 /* View */,
-				123332832742580600318121 /* Controller */,
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
-		123332832742580600318121 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				12604E60273D83C000AB05F5 /* AppDelegate.swift */,
-				12604E62273D83C000AB05F5 /* SceneDelegate.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		123332842742580E00318121 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				12604E66273D83C000AB05F5 /* Main.storyboard */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		123332852742581400318121 /* Model */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -219,7 +143,8 @@
 			children = (
 				1233328727425F9400318121 /* README.md */,
 				12604E71273D83C100AB05F5 /* Info.plist */,
-				12333282274257FF00318121 /* Application */,
+				12604E60273D83C000AB05F5 /* AppDelegate.swift */,
+				12604E62273D83C000AB05F5 /* SceneDelegate.swift */,
 				1233326C2740358F00318121 /* Teams */,
 				12333270274035BD00318121 /* TeamDetail */,
 				123332762740366B00318121 /* Heroe */,
@@ -308,7 +233,6 @@
 				12604E70273D83C100AB05F5 /* LaunchScreen.storyboard in Resources */,
 				12604E6D273D83C100AB05F5 /* Assets.xcassets in Resources */,
 				1233328827425F9500318121 /* README.md in Resources */,
-				12604E68273D83C000AB05F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,14 +299,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		12604E66273D83C000AB05F5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				12604E67273D83C000AB05F5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		12604E6E273D83C100AB05F5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -523,7 +439,6 @@
 				INFOPLIST_FILE = SuperTeams/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -552,7 +467,6 @@
 				INFOPLIST_FILE = SuperTeams/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

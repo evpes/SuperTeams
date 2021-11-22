@@ -43,6 +43,8 @@ class HeroeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = UIColor.systemBackground
+        
         heroeManager.delegate = self
         
         avatar = UIImageView()

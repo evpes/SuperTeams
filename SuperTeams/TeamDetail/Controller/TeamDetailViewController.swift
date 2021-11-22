@@ -76,6 +76,8 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             team = Team(context: context)
         }
+        
+        view.backgroundColor = UIColor.systemBackground
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -104,7 +106,8 @@ class TeamDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "Heroe") as! HeroeViewController
+        let vc = HeroeViewController()
+        //let vc = storyboard?.instantiateViewController(withIdentifier: "Heroe") as! HeroeViewController
         vc.team = team
         vc.teamDetailVCDelagate = self
         
